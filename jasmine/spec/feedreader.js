@@ -50,7 +50,7 @@ $(function() {
     });
 
     describe('The Menu', function() {
-        let icon = $('.menu-icon-link');
+        let icon = ('.menu-icon-link');
     /* TODO: Write a new test suite named "The menu" */
         it('menu hidden by default', function() {
             expect(body.hasClass('menu-hidden')).toBe(true);
@@ -79,6 +79,10 @@ $(function() {
  describe('Initial Entries', function() {
         beforeEach(function(done) {
             loadFeed(0, done);
+        });
+
+        it('There is .entry element in .feed container', function() {
+            expect('.feed .entry').length.toBeGreaterThan(0);
         });
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
