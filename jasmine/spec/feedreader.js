@@ -63,20 +63,22 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
-        it('menu visible on click', function() {
+        it('menu visible on click and hides when clicked again', function() {
            icon.click();
             expect($('body').hasClass('menu-hidden')).not.toBe(true);
+           icon.click();
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
          /* A test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-        it('menu hides if clicked again', function() {
+        /* it('menu hides if clicked again', function() {
            icon.click();
             expect($('body').hasClass('menu-hidden')).toBe(true);
         });
-
+*/
     });
     /* A new test suite named "Initial Entries" */
  describe('Initial Entries', function() {
@@ -100,22 +102,18 @@ $(function() {
     let contentAfter;
 
         beforeEach(function( done ) {
-            loadFeed(1, function() {
-            contentBefore = $('.feed').html();
-            done();
+            loadFeed(0, function() {
+                contentBefore = $('.feed').html();
+                loadFeed(1, function(){
+                    contentAfter = $('.feed').html();
+                    done();
+                });
             });
-        });
-        /* A test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
-        it('loaded new feed', function(done){
-        loadFeed(2, function() {
-        contentAfter = $('.feed').html();
-        expect('contentAfter').not.toBe(contentBefore);
-        done();
-        });
-      });
-    });
 
+        it('loaded new feed', function(done){
+            expect(contentAfter).not.toBe(contentBefore);
+            done();
+          });
+       });
+    });  
 }());
