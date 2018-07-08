@@ -74,11 +74,6 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-        /* it('menu hides if clicked again', function() {
-           icon.click();
-            expect($('body').hasClass('menu-hidden')).toBe(true);
-        });
-*/
     });
     /* A new test suite named "Initial Entries" */
  describe('Initial Entries', function() {
@@ -109,11 +104,10 @@ $(function() {
                     done();
                 });
             });
-
-        it('loaded new feed', function(done){
+     });
+         it('loaded new feed', function(done){
             expect(contentAfter).not.toBe(contentBefore);
             done();
-          });
        });
     });  
 }());
